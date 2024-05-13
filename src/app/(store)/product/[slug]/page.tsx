@@ -35,6 +35,19 @@ export async function generateMetadata({ params }: ProductPageProps) {
   }
 }
 
+export async function generateStaticParams() {
+  const response = await api('/products/featured', {
+    next: {
+      revalidate: 10,
+    },
+  })
+  const products: Product[] = await response.json()
+
+  return products.map((product) => ({
+    slug: product.slug,
+  }))
+}
+
 export default async function ProductPage({ params }: ProductPageProps) {
   const product = await getProduct(params.slug)
 
