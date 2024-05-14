@@ -1,3 +1,4 @@
+import { AddToCartButton } from '@/components/add-to-cart-button'
 import { RadioButton } from '@/components/form/radio/radio-button'
 import { RadioGroup } from '@/components/form/radio/radio-group'
 import { Heading } from '@/components/heading'
@@ -125,11 +126,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
         </div>
 
-        <button className="rounded-full bg-emerald-500 px-5 py-2.5 w-full">
-          <Text as="span" variant="semiboldBody" className="text-white">
-            Adicionar ao carrinho
-          </Text>
-        </button>
+        <AddToCartButton productId={product.id} />
       </form>
     </div>
   )
