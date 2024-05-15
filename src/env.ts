@@ -1,19 +1,15 @@
+import { createEnv } from '@t3-oss/env-nextjs'
 import { z } from 'zod'
 
-const envSchema = z.object({
-  NEXT_PUBLIC_API_BASE_URL: z.string().url(),
-  NEXT_URL: z.string().url(),
+export const env = createEnv({
+  server: {
+    NEXT_URL: z.string().url(),
+  },
+  client: {
+    NEXT_PUBLIC_API_BASE_URL: z.string().url(),
+  },
+  runtimeEnv: {
+    NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    NEXT_URL: process.env.NEXT_URL,
+  },
 })
-
-const parsedEnv = envSchema.safeParse(process.env)
-
-if (!parsedEnv.success) {
-  console.error(
-    'Invalid environment variables',
-    parsedEnv.error.flatten().fieldErrors,
-  )
-
-  throw new Error('Invalid environment variables')
-}
-
-export const env = parsedEnv.data
