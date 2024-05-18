@@ -50,7 +50,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             className="relative group rounded-lg bg-zinc-900 overflow-hidden grid place-items-center"
           >
             <Image
-              src={`/images${product.image}`}
+              src={product.image}
               className="group-hover:scale-105 transition-transform duration-300"
               width={430}
               height={430}

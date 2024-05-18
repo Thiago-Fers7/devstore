@@ -39,9 +39,10 @@ export async function generateMetadata({ params }: ProductPageProps) {
 export async function generateStaticParams() {
   const response = await api('/products/featured', {
     next: {
-      revalidate: 10,
+      revalidate: 60 * 60, // 1 hour
     },
   })
+
   const products: Product[] = await response.json()
 
   return products.map((product) => ({
@@ -75,7 +76,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <div className="flex gap-4 max-h-[860px]">
       <div className="flex-1 grid place-items-center">
         <Image
-          src={`/images${product.image}`}
+          src={product.image}
           alt="product 1"
           width={860}
           height={860}

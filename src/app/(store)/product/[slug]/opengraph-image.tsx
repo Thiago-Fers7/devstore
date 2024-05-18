@@ -1,6 +1,5 @@
 import { api } from '@/data/api'
 import { Product } from '@/data/types/products'
-import { env } from '@/env'
 import { ImageResponse } from 'next/og'
 import colors from 'tailwindcss/colors'
 
@@ -33,11 +32,6 @@ type OgImageProps = {
 export default async function OgImage({ params }: OgImageProps) {
   const product = await getProduct(params.slug)
 
-  const productImageURL = new URL(
-    `/images${product.image}`,
-    env.NEXT_URL,
-  ).toString()
-
   return new ImageResponse(
     (
       <div
@@ -51,7 +45,7 @@ export default async function OgImage({ params }: OgImageProps) {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={productImageURL} alt="" style={{ height: '100%' }} />
+        <img src={product.image} alt="" style={{ height: '100%' }} />
       </div>
     ),
     {
