@@ -10,7 +10,7 @@ export default function EnvironmentPage() {
   return (
     <div className="h-screen w-screen grid place-items-center p-10">
       <div className="flex flex-col gap-2">
-        <Heading>{envMessage}</Heading>
+        <Heading className="text-green-400">{envMessage}</Heading>
         <Link href={envAPIURL}>
           <Text>{envAPIURL}</Text>
         </Link>
